@@ -1,8 +1,6 @@
 # go-open
 
-`go-open` provides a unified API to stream files from URI (file, HTTP, and HTTPS) in Go.
-
-`go-open` currently supports:
+`go-open` provides a unified API to stream files from URI (file, HTTP, and HTTPS) in Go. `go-open` currently supports:
 
 - Text or binary files
 - Streaming from the local filesystem
@@ -31,9 +29,11 @@ go get -u github.com/w-gao/go-open@latest
 Below is some boilerplate code to get started with `go-open`.
 
 ```go
+import "github.com/w-gao/go-open"
+
 func processFile(uri string) error {
 	// f is an io.ReadCloser
-	f, err := SmartOpen(uri)
+	f, err := goopen.SmartOpen(uri)
 	if err != nil {
 		return fmt.Errorf("%w", err)
 	}
@@ -59,14 +59,16 @@ func processFile(uri string) error {
 ```
 
 ```go
-// relative paths
-processFile("README.md")
-
-// absolute paths
-processFile("/Users/wlgao/code/go-open/README.md")
-
-// file from the Internet
-processFile("https://raw.githubusercontent.com/w-gao/wdl-viewer/main/index.html")
+func main() {
+	// relative paths
+	processFile("README.md")
+	
+	// absolute paths
+	processFile("/Users/wlgao/code/go-open/README.md")
+	
+	// file from the Internet
+	processFile("https://raw.githubusercontent.com/w-gao/wdl-viewer/main/index.html")
+}
 ```
 
 
